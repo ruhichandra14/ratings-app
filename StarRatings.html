@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Ratings</title>
+	<link rel="stylesheet" href="">
+	<!-- <link href='//fonts.googleapis.com/css?family=Frijole' rel='stylesheet'> -->
+	<style>
+
+	body{
+		margin: 50px 0 0 100px;
+	}
+
+	.rating-button{
+		width: 25px;
+		height: 25px;
+		background-color: white;
+	}
+	.rating-button:hover{
+		background-color: gold;
+	}
+	h3{
+		color: steelblue;
+		font-family: Comic Sans MS;
+		font-size: 20px;
+	}
+	.active-rating{
+		background-color: gold;
+	}
+	#result{
+		font-family: Comic Sans MS;
+		width: 150px;
+		outline: 5px dashed gold;
+		border: 2px dotted gold;
+		animation: 5s animateBorder ease infinite;
+	}
+
+	@keyframes animateBorder {
+		to {
+		    box-shadow: 0 0 0 5px yellow;
+		}
+	}
+
+	</style>
+</head>
+<body>
+
+	<h3>RATINGS </h3>
+	<br/>
+	<br/>
+	<button type="button" class="rating-button" value="1"></button>
+	<button type="button" class="rating-button" value="2"></button>
+	<button type="button" class="rating-button" value="3"></button>
+	<button type="button" class="rating-button" value="4"></button>
+	<button type="button" class="rating-button" value="5"></button>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div id = "result">Current Rating is 0</div>
+
+<script>
+
+	var star = document.getElementsByClassName('rating-button');
+	var clicked = false;
+	var ratings = 0;
+   
+	for(i=0;i<star.length;i++){
+		star[i].addEventListener('click',function activeStar(event){
+		        if(!this.classList.contains('active-rating')){
+		            for(j=0;j<parseInt(event.target.value);j++){
+			            console.log('Rated star was ',event.target.value);
+			            console.log("entered for loop");
+			            console.log("rated element are ",j);
+			            console.log("clicked value ",j,clicked);
+			            star[j].classList.add('active-rating');
+			            console.log("clicked value for ",j ,clicked);
+
+		            }
+		            ratings = parseInt(event.target.value);
+                }
+
+			else{
+				
+		        console.log('Unrated star was ',event.target.value);
+		        for(j=parseInt(event.target.value)-1;j<5;j++){
+		        	console.log('unrated elements are ',j + 1);
+		        	star[j].classList.remove('active-rating');
+		        }
+		        ratings = parseInt(event.target.value)-1;
+			}
+			document.getElementById('result').innerHTML = "Current Rating is " + ratings;
+        });
+	}
+
+
+
+</script>
+</body>
+</html>
